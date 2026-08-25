@@ -1,20 +1,20 @@
 {
   "hero": {
-    "eyebrow": "Mobile Cocktailbar · Tirol",
-    "tagline": "Deine Bar. Dein Fest. Unser Wagen.",
-    "lead": "Frisch gemixte Cocktails direkt aus dem Anhänger — bei dir vor Ort, saisonal und mit Zutaten aus dem eigenen Garten. Für Hochzeiten, runde Geburtstage, Firmenfeiern und Sommerfeste in ganz Tirol."
+    "eyebrow": "Mobile Bar · Tirol",
+    "tagline": "Deine Bar. Dein Fest. Mein Buddy.",
+    "lead": "Frisch gemixte Drinks direkt aus dem Buddy — bei dir vor Ort, saisonal und mit ausgewählten Zutaten aus dem eigenen Garten. Für Hochzeiten, Geburtstage, Firmenfeiern und Veranstaltungen in ganz Tirol."
   },
   "event": {
-    "badge": "Live seit",
-    "title": "Mozi's ist gestartet!",
+    "badge": "unterwegs seit",
+    "title": "Mozi’s kommt zu deinem Fest.",
     "date": "7. August 2026",
     "location": "Fritzens, Tirol",
     "instagram": "mozis.bar"
   },
   "about": {
     "heading": "Ich bin Moritz —",
-    "headingEm": "und das ist Mozi's",
-    "text": "Seit dem 7. August 2026 bin ich mit meiner eigenen mobilen Bar unterwegs. Bei Mozi's versuche ich, so viel wie möglich selbst zu machen — am liebsten frisch, saisonal und mit Zutaten aus dem eigenen Garten. Ich freue mich auf viele Feste, neue Bekanntschaften, lange Abende und alles, was in den nächsten Monaten noch auf mich zukommt. Vielleicht steht Mozi's ja auch irgendwann auf eurem Fest — ich bin gespannt, wohin die Reise geht!",
+    "headingEm": "und das ist mein Buddy",
+    "text": "Seit dem 7. August 2026 bin ich gemeinsam mit meinem Buddy – dem mobilen Baranhänger – auf Festen und Veranstaltungen in ganz Tirol unterwegs. Bei Mozi’s setze ich auf frische, natürliche und saisonale Zutaten und versuche, so viel wie möglich selbst zu machen – am liebsten mit dem, was gerade im eigenen Garten wächst.",
     "stats": [
       {
         "num": "100%",
@@ -98,36 +98,30 @@
   ],
   "faq": [
     {
-      "q": "Wie weit fahrt ihr für ein Event?",
-      "a": "Standardmäßig ganz Tirol. Für Events außerhalb kommt ein kleiner Anfahrtsaufschlag dazu — einfach bei der Anfrage den Ort angeben."
+      "q": "Für welche Veranstaltungen kann man Mozi’s buchen?",
+      "a": "Mozi’s ist für Hochzeiten, Geburtstage, Firmenfeiern, Sommerfeste und viele weitere Veranstaltungen in ganz Tirol buchbar. Das Angebot wird dabei individuell an Anlass, Gästezahl und eure Wünsche angepasst."
     },
     {
-      "q": "Braucht ihr Strom- und Wasseranschluss vor Ort?",
-      "a": "Ein normaler Stromanschluss (230V) reicht. Wasser bringen wir im eigenen Tank mit — ein Anschluss vor Ort ist ein Plus, aber kein Muss."
+      "q": "Welche Getränke bietet Mozi’s an?",
+      "a": "Das Getränkeangebot wird passend zu eurem Fest zusammengestellt. Möglich sind unter anderem Cocktails, alkoholfreie Drinks, Bier, Wein und saisonale Eigenkreationen. Dabei lege ich besonderen Wert auf frische, natürliche und saisonale Zutaten."
     },
     {
-      "q": "Könnt ihr auch bei Regen arbeiten?",
-      "a": "Ja, der Anhänger hat ein festes Dach und ein ausklappbares Vordach. Für die Gäste empfehlen wir zusätzlich einen überdachten Bereich."
+      "q": "Was muss vor Ort vorhanden sein?",
+      "a": "Für Buddy wird ein normaler Stromanschluss benötigt. Ein fixer Wasseranschluss ist nicht notwendig, da ich mit Kanistern arbeite. Ideal ist jedoch eine Möglichkeit vor Ort, diese bei Bedarf mit Frischwasser aufzufüllen. Außerdem sollte der Stellplatz gut erreichbar und ausreichend eben sein."
     },
     {
-      "q": "Wie läuft die Bezahlung ab?",
-      "a": "Nach Angebot und Terminbestätigung stellen wir eine Rechnung mit Anzahlung; der Rest ist nach dem Event fällig."
+      "q": "Was kostet die Buchung und wie wird bezahlt?",
+      "a": "Für die Buchung von Mozi’s selbst fällt keine zusätzliche Gebühr an. Die konsumierten Getränke können direkt vor Ort bar oder mit Karte bezahlt werden. Auf Wunsch ist natürlich auch eine Abrechnung per Rechnung möglich."
+    },
+    {
+      "q": "Wie weit ist Mozi’s unterwegs und was kostet die Anfahrt?",
+      "a": "Grundsätzlich bin ich mit Buddy in ganz Tirol unterwegs – bei weiteren Strecken einfach gerne anfragen. Im Umkreis von 20 km rund um Fritzens ist die Anfahrt kostenlos. Für weitere Entfernungen werden ab dem 21. Kilometer € 0,50 pro Kilometer berechnet. "
     }
   ],
   "testimonials": [
     {
-      "text": "Die Bar war der Gesprächsstoff unserer Hochzeit. Unkompliziert in der Planung und die Drinks waren perfekt abgestimmt.",
-      "who": "Julia & Thomas, Hochzeit in Fritzens",
-      "stars": 5
-    },
-    {
-      "text": "Pünktlich, freundlich, und der Rosmarin Sour ist bis heute Gesprächsthema im Büro. Kommt bei der nächsten Feier wieder.",
-      "who": "Markus, Firmenfeier Innsbruck",
-      "stars": 5
-    },
-    {
       "text": "Auch die alkoholfreien Drinks waren richtig gut gemacht — nicht nur eine Notlösung. Genau das, was wir für unser Fest gesucht haben.",
-      "who": "Sabine, 50er-Geburtstag",
+      "who": "Laura, Eröffnungsfeier",
       "stars": 5
     }
   ],
@@ -135,17 +129,17 @@
     {
       "src": "images/bar-action-1.jpeg",
       "alt": "Cocktail wird gemixt",
-      "caption": "Los geht's"
+      "caption": "Aus dem Buddy"
     },
     {
       "src": "images/bar-action-2.jpeg",
       "alt": "Aperol wird eingeschenkt",
-      "caption": "Cheers!"
+      "caption": "..."
     },
     {
       "src": "images/bartender-smile.jpeg",
       "alt": "Bartender an der Bar",
-      "caption": "Mozi's Team"
+      "caption": "Los geht's"
     }
   ],
   "images": {
@@ -159,7 +153,7 @@
     "ablauf": true,
     "getraenke": false,
     "galerie": true,
-    "testimonials": true,
+    "testimonials": false,
     "pakete": false,
     "faq": true
   },
