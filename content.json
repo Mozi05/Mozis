@@ -145,7 +145,7 @@
     {
       "src": "images/bartender-smile.jpeg",
       "alt": "Bartender an der Bar",
-      "caption": "Mozi's "
+      "caption": "Mozi's Team"
     }
   ],
   "images": {
@@ -157,10 +157,10 @@
     "ueberUns": true,
     "angebot": true,
     "ablauf": true,
-    "getraenke": true,
+    "getraenke": false,
     "galerie": true,
     "testimonials": true,
-    "pakete": true,
+    "pakete": false,
     "faq": true
   },
   "contact": {
