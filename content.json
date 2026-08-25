@@ -127,19 +127,19 @@
   ],
   "gallery": [
     {
-      "src": "images/bar-action-1.jpeg",
+      "src": "images/bar-action-2.jpeg",
       "alt": "Cocktail wird gemixt",
       "caption": "Aus dem Buddy"
     },
     {
-      "src": "images/bar-action-2.jpeg",
-      "alt": "Aperol wird eingeschenkt",
-      "caption": "..."
+      "src": "Buddy.jpeg",
+      "alt": "Anhänger von außen",
+      "caption": "Mein Buddy"
     },
     {
-      "src": "images/bartender-smile.jpeg",
-      "alt": "Bartender an der Bar",
-      "caption": "Los geht's"
+      "src": "Berry Punch.jpeg",
+      "alt": "Getränke auf Theke",
+      "caption": "Cheers!"
     }
   ],
   "images": {
