@@ -1,0 +1,172 @@
+{
+  "hero": {
+    "eyebrow": "Mobile Cocktailbar · Tirol",
+    "tagline": "Deine Bar. Dein Fest. Unser Wagen.",
+    "lead": "Frisch gemixte Cocktails direkt aus dem Anhänger — bei dir vor Ort, saisonal und mit Zutaten aus dem eigenen Garten. Für Hochzeiten, runde Geburtstage, Firmenfeiern und Sommerfeste in ganz Tirol."
+  },
+  "event": {
+    "badge": "Live seit",
+    "title": "Mozi's ist gestartet!",
+    "date": "7. August 2026",
+    "location": "Fritzens, Tirol",
+    "instagram": "mozis.bar"
+  },
+  "about": {
+    "heading": "Ich bin Moritz —",
+    "headingEm": "und das ist Mozi's",
+    "text": "Seit dem 7. August 2026 bin ich mit meiner eigenen mobilen Bar unterwegs. Bei Mozi's versuche ich, so viel wie möglich selbst zu machen — am liebsten frisch, saisonal und mit Zutaten aus dem eigenen Garten. Ich freue mich auf viele Feste, neue Bekanntschaften, lange Abende und alles, was in den nächsten Monaten noch auf mich zukommt. Vielleicht steht Mozi's ja auch irgendwann auf eurem Fest — ich bin gespannt, wohin die Reise geht!",
+    "stats": [
+      {
+        "num": "100%",
+        "label": "frisch gemixt"
+      },
+      {
+        "num": "1",
+        "label": "Bar, ganz Tirol"
+      },
+      {
+        "num": "∞",
+        "label": "Rezepte im Gepäck"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "name": "Zi's Garten-Mule",
+      "desc": "Wodka, Ingwer, Limette, Minze aus dem eigenen Beet",
+      "price": "€ 9"
+    },
+    {
+      "name": "Rosmarin Sour",
+      "desc": "Gin, Zitrone, Rosmarinsirup, Eiweißschaum",
+      "price": "€ 10"
+    },
+    {
+      "name": "Fritzens Spritz",
+      "desc": "Aperitif, Prosecco, Soda, Orangenzeste",
+      "price": "€ 8"
+    },
+    {
+      "name": "Basilikum Smash",
+      "desc": "Rum, Limette, frisches Basilikum, Rohrzucker",
+      "price": "€ 9"
+    },
+    {
+      "name": "Alkoholfrei: Kräuter-Lemonade",
+      "desc": "Zitrone, Minze, Holunderblüte, Soda",
+      "price": "€ 6"
+    }
+  ],
+  "packages": [
+    {
+      "tag": "Klein & fein",
+      "name": "Beet",
+      "price": "ab € 450",
+      "note": "bis 40 Gäste",
+      "featured": false,
+      "features": [
+        "2 Cocktails + 1 alkoholfrei zur Wahl",
+        "Auf- und Abbau inklusive",
+        "Eis & Deko im Bar-Stil"
+      ]
+    },
+    {
+      "tag": "Beliebt",
+      "name": "Garten",
+      "price": "ab € 780",
+      "note": "bis 80 Gäste",
+      "featured": true,
+      "features": [
+        "4 Cocktails + 2 alkoholfrei zur Wahl",
+        "Signature Drink mit eurem Namen",
+        "Kräuter-Deko passend zum Fest",
+        "Zusätzliche Servicekraft"
+      ]
+    },
+    {
+      "tag": "Große Feier",
+      "name": "Ernte",
+      "price": "ab € 1.250",
+      "note": "bis 150 Gäste",
+      "featured": false,
+      "features": [
+        "Volle Karte + Saison-Specials",
+        "Zwei Servicekräfte an der Bar",
+        "Individuelle Menükarten zum Mitnehmen"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Wie weit fahrt ihr für ein Event?",
+      "a": "Standardmäßig ganz Tirol. Für Events außerhalb kommt ein kleiner Anfahrtsaufschlag dazu — einfach bei der Anfrage den Ort angeben."
+    },
+    {
+      "q": "Braucht ihr Strom- und Wasseranschluss vor Ort?",
+      "a": "Ein normaler Stromanschluss (230V) reicht. Wasser bringen wir im eigenen Tank mit — ein Anschluss vor Ort ist ein Plus, aber kein Muss."
+    },
+    {
+      "q": "Könnt ihr auch bei Regen arbeiten?",
+      "a": "Ja, der Anhänger hat ein festes Dach und ein ausklappbares Vordach. Für die Gäste empfehlen wir zusätzlich einen überdachten Bereich."
+    },
+    {
+      "q": "Wie läuft die Bezahlung ab?",
+      "a": "Nach Angebot und Terminbestätigung stellen wir eine Rechnung mit Anzahlung; der Rest ist nach dem Event fällig."
+    }
+  ],
+  "testimonials": [
+    {
+      "text": "Die Bar war der Gesprächsstoff unserer Hochzeit. Unkompliziert in der Planung und die Drinks waren perfekt abgestimmt.",
+      "who": "Julia & Thomas, Hochzeit in Fritzens",
+      "stars": 5
+    },
+    {
+      "text": "Pünktlich, freundlich, und der Rosmarin Sour ist bis heute Gesprächsthema im Büro. Kommt bei der nächsten Feier wieder.",
+      "who": "Markus, Firmenfeier Innsbruck",
+      "stars": 5
+    },
+    {
+      "text": "Auch die alkoholfreien Drinks waren richtig gut gemacht — nicht nur eine Notlösung. Genau das, was wir für unser Fest gesucht haben.",
+      "who": "Sabine, 50er-Geburtstag",
+      "stars": 5
+    }
+  ],
+  "gallery": [
+    {
+      "src": "images/bar-action-1.jpeg",
+      "alt": "Cocktail wird gemixt",
+      "caption": "Los geht's"
+    },
+    {
+      "src": "images/bar-action-2.jpeg",
+      "alt": "Aperol wird eingeschenkt",
+      "caption": "Cheers!"
+    },
+    {
+      "src": "images/bartender-smile.jpeg",
+      "alt": "Bartender an der Bar",
+      "caption": "Mozi's "
+    }
+  ],
+  "images": {
+    "hero": "images/bartender-smile.jpeg",
+    "about": "images/bar-action-1.jpeg",
+    "logo": "images/logo.jpeg"
+  },
+  "sections": {
+    "ueberUns": true,
+    "angebot": true,
+    "ablauf": true,
+    "getraenke": true,
+    "galerie": true,
+    "testimonials": true,
+    "pakete": true,
+    "faq": true
+  },
+  "contact": {
+    "address": "Fritzens, Tirol",
+    "email": "moritz.eggerriedmueller@gmail.com",
+    "phone": "+43 680 204 87 90",
+    "instagram": "mozis.bar"
+  }
+}

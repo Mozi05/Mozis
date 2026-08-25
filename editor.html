@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mozi's — Inhalte bearbeiten</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6f1e0; --paper-deep:#eae1c4; --ink:#181c10; --ink-soft:#4a5138;
+    --gold:#b56a3a; --gold-soft:#d99a6c; --card:#fffdf6; --card-edge:#181c1022; --line:#181c102e;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:'Nunito',sans-serif; -webkit-font-smoothing:antialiased; }
+  .script{ font-family:'Baloo 2',sans-serif; font-weight:700; }
+  header{ background:var(--ink); color:var(--paper); padding:22px 28px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; position:sticky; top:0; z-index:10; }
+  header h1{ margin:0; font-size:1.8rem; }
+  header p{ margin:2px 0 0; color:#cfcabb; font-size:0.85rem; font-family:'Baloo 2',sans-serif; }
+  .wrap{ max-width:900px; margin:0 auto; padding:0 24px 140px; }
+  .note{
+    background:var(--card); border:1px solid var(--card-edge); border-radius:8px; padding:20px 24px;
+    margin:26px 0; font-size:0.92rem; line-height:1.6;
+  }
+  .note h3{ margin:0 0 8px; font-family:'Baloo 2',sans-serif; font-size:0.85rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--gold); }
+  .note ol{ margin:0; padding-left:20px; }
+  .note li{ margin-bottom:6px; }
+  .note code{ background:var(--paper-deep); padding:1px 6px; border-radius:3px; font-family:'Baloo 2',sans-serif; font-size:0.85em; }
+
+  section.block{ margin:34px 0; }
+  .block h2{ font-size:1.5rem; margin:0 0 4px; }
+  .block .hint{ font-family:'Baloo 2',sans-serif; font-size:0.72rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:16px; display:block; }
+
+  label{ display:block; font-family:'Baloo 2',sans-serif; font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); margin:14px 0 6px; }
+  input[type=text], input[type=email], input[type=tel], textarea{
+    width:100%; font-family:'Nunito',sans-serif; font-size:0.98rem; padding:11px 13px;
+    background:var(--card); border:1px solid var(--card-edge); border-radius:5px; color:var(--ink);
+  }
+  textarea{ resize:vertical; min-height:70px; }
+  input:focus, textarea:focus{ outline:2px solid var(--gold); outline-offset:1px; }
+  .row2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .row3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  @media (max-width:640px){ .row2, .row3{ grid-template-columns:1fr; } }
+
+  .card-item{
+    background:var(--card); border:1px solid var(--card-edge); border-radius:6px; padding:18px 18px 8px;
+    margin-bottom:14px; position:relative;
+  }
+  .card-item .remove{
+    position:absolute; top:12px; right:12px; background:none; border:none; cursor:pointer;
+    font-family:'Baloo 2',sans-serif; font-size:0.7rem; color:#a04a2f; letter-spacing:0.04em;
+  }
+  .add-btn{
+    font-family:'Baloo 2',sans-serif; font-size:0.8rem; font-weight:700; letter-spacing:0.03em;
+    background:transparent; border:1px dashed var(--ink); color:var(--ink); padding:10px 16px;
+    border-radius:4px; cursor:pointer; margin-top:4px;
+  }
+  .add-btn:hover{ background:var(--card); }
+
+  .checkbox-row{ display:flex; align-items:center; gap:8px; margin-top:14px; }
+  .checkbox-row input{ width:auto; }
+  .checkbox-row label{ margin:0; }
+
+  .stars-input{ width:70px !important; }
+
+  footer.bar{
+    position:fixed; bottom:0; left:0; right:0; background:var(--ink); color:var(--paper);
+    padding:16px 24px; display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap;
+    box-shadow:0 -8px 24px -12px rgba(0,0,0,0.3); z-index:20;
+  }
+  .btn{
+    font-family:'Baloo 2',sans-serif; font-size:0.82rem; font-weight:700; letter-spacing:0.03em;
+    padding:12px 22px; border-radius:4px; cursor:pointer; border:1px solid var(--paper);
+  }
+  .btn-solid{ background:var(--gold-soft); color:var(--ink); border-color:var(--gold-soft); }
+  .btn-outline{ background:transparent; color:var(--paper); }
+  .status{ font-family:'Baloo 2',sans-serif; font-size:0.75rem; color:var(--gold-soft); }
+  input[type=file]{ display:none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1 class="script">Mozi's — Inhalte bearbeiten</h1>
+    <p>Kein Programmieren nötig · exportiert content.json</p>
+  </div>
+  <span class="status" id="status"></span>
+</header>
+
+<div class="wrap">
+
+  <div class="note">
+    <h3>So funktioniert's</h3>
+    <ol>
+      <li>Felder unten ausfüllen oder ändern (Preise, Texte, Karten, FAQ, ...).</li>
+      <li>Unten auf <strong>„Datei herunterladen"</strong> klicken — du bekommst eine Datei namens <code>content.json</code>.</li>
+      <li>Diese Datei auf GitHub in deinen Repo-Ordner hochladen und die alte <code>content.json</code> damit ersetzen (auf GitHub: Datei anklicken → Stift-Symbol „Edit" oder „Upload file" → die neue Datei auswählen → „Commit changes").</li>
+      <li>Die Website lädt die neuen Inhalte automatisch beim nächsten Aufruf — kein weiterer Schritt nötig.</li>
+    </ol>
+  </div>
+
+  <div class="note">
+    Schon mal bearbeitet? Lade deine aktuelle <code>content.json</code> hier, um darin weiterzuarbeiten:
+    <br><br>
+    <label for="fileLoad" class="add-btn" style="display:inline-block;">Datei laden</label>
+    <input type="file" id="fileLoad" accept="application/json">
+  </div>
+
+  <!-- HERO -->
+  <section class="block">
+    <h2>Startseite</h2>
+    <span class="hint">Text ganz oben auf der Seite</span>
+    <label for="h_eyebrow">Kleiner Vortext</label>
+    <input type="text" id="h_eyebrow">
+    <label for="h_tagline">Slogan (unter dem Logo)</label>
+    <input type="text" id="h_tagline">
+    <label for="h_lead">Beschreibungstext</label>
+    <textarea id="h_lead"></textarea>
+  </section>
+
+  <!-- IMAGES -->
+  <section class="block">
+    <h2>Bilder</h2>
+    <span class="hint">Diese Fotos kommen jeweils nur einmal auf der Seite vor. Die Bilddatei muss vorher im images-Ordner auf GitHub liegen — hier gibst du nur den Dateinamen an.</span>
+    <label for="img_hero">Hero-Foto (großes Foto ganz oben)</label>
+    <input type="text" id="img_hero" placeholder="images/dateiname.jpeg">
+    <label for="img_about">Über-uns-Foto</label>
+    <input type="text" id="img_about" placeholder="images/dateiname.jpeg">
+    <label for="img_logo">Logo (erscheint in Kopfzeile, Fußzeile &amp; Browser-Tab)</label>
+    <input type="text" id="img_logo" placeholder="images/logo.jpeg">
+  </section>
+
+  <!-- EVENT -->
+  <section class="block">
+    <h2>Ankündigung / Event</h2>
+    <span class="hint">Der dunkle Balken oben, z.B. für den Startzeitpunkt der Bar</span>
+    <div class="row2">
+      <div><label for="e_badge">Label (z.B. "Live seit")</label><input type="text" id="e_badge"></div>
+      <div><label for="e_title">Titel</label><input type="text" id="e_title"></div>
+    </div>
+    <div class="row3">
+      <div><label for="e_date">Datum</label><input type="text" id="e_date"></div>
+      <div><label for="e_location">Ort</label><input type="text" id="e_location"></div>
+      <div><label for="e_instagram">Instagram-Handle (ohne @)</label><input type="text" id="e_instagram"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="block">
+    <h2>Über uns</h2>
+    <div class="row2">
+      <div><label for="a_heading">Überschrift (normal)</label><input type="text" id="a_heading"></div>
+      <div><label for="a_headingEm">Überschrift (Handschrift-Teil)</label><input type="text" id="a_headingEm"></div>
+    </div>
+    <label for="a_text">Beschreibungstext</label>
+    <textarea id="a_text" style="min-height:110px;"></textarea>
+    <label style="margin-top:20px;">Zahlen / Kennzahlen (3 Stück)</label>
+    <div class="row3">
+      <div><input type="text" id="s0_num" placeholder="Zahl"><input type="text" id="s0_lab" placeholder="Beschriftung" style="margin-top:8px;"></div>
+      <div><input type="text" id="s1_num" placeholder="Zahl"><input type="text" id="s1_lab" placeholder="Beschriftung" style="margin-top:8px;"></div>
+      <div><input type="text" id="s2_num" placeholder="Zahl"><input type="text" id="s2_lab" placeholder="Beschriftung" style="margin-top:8px;"></div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="block">
+    <h2>Getränkekarte</h2>
+    <span class="hint">Cocktails und Preise</span>
+    <div id="menuList"></div>
+    <button class="add-btn" onclick="addMenuRow()">+ Getränk hinzufügen</button>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="block">
+    <h2>Preis-Pakete</h2>
+    <span class="hint">Die drei Pakete auf der Seite</span>
+    <div id="pkgList"></div>
+    <button class="add-btn" onclick="addPkgRow()">+ Paket hinzufügen</button>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block">
+    <h2>Häufige Fragen</h2>
+    <div id="faqList"></div>
+    <button class="add-btn" onclick="addFaqRow()">+ Frage hinzufügen</button>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="block">
+    <h2>Galerie</h2>
+    <span class="hint">Fotos, die in der Galerie-Sektion gezeigt werden. Das Bild selbst muss vorher im images-Ordner auf GitHub liegen — hier gibst du nur den Dateinamen an.</span>
+    <div id="galleryList"></div>
+    <button class="add-btn" onclick="addGalleryRow()">+ Foto hinzufügen</button>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="block">
+    <h2>Referenzen</h2>
+    <div id="testiList"></div>
+    <button class="add-btn" onclick="addTestiRow()">+ Referenz hinzufügen</button>
+  </section>
+
+  <!-- VISIBILITY -->
+  <section class="block">
+    <h2>Sichtbarkeit</h2>
+    <span class="hint">Sektionen aus- und wieder einblenden, ohne Inhalte zu löschen. Hero, Ankündigung, Kontakt und Footer sind immer sichtbar.</span>
+    <div class="checkbox-row"><input type="checkbox" id="vis_ueberUns" checked><label style="margin:0;">Über uns</label></div>
+    <div class="checkbox-row"><input type="checkbox" id="vis_angebot" checked><label style="margin:0;">Angebot</label></div>
+    <div class="checkbox-row"><input type="checkbox" id="vis_ablauf" checked><label style="margin:0;">Ablauf ("So kommt die Bar zu euch")</label></div>
+    <div class="checkbox-row"><input type="checkbox" id="vis_getraenke" checked><label style="margin:0;">Getränkekarte</label></div>
+    <div class="checkbox-row"><input type="checkbox" id="vis_galerie" checked><label style="margin:0;">Galerie</label></div>
+    <div class="checkbox-row"><input type="checkbox" id="vis_testimonials" checked><label style="margin:0;">Referenzen</label></div>
+    <div class="checkbox-row"><input type="checkbox" id="vis_pakete" checked><label style="margin:0;">Pakete / Preise</label></div>
+    <div class="checkbox-row"><input type="checkbox" id="vis_faq" checked><label style="margin:0;">Häufige Fragen</label></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="block">
+    <h2>Kontakt</h2>
+    <label for="c_address">Adresse</label>
+    <input type="text" id="c_address">
+    <div class="row3">
+      <div><label for="c_email">E-Mail</label><input type="text" id="c_email"></div>
+      <div><label for="c_phone">Telefon</label><input type="text" id="c_phone"></div>
+      <div><label for="c_instagram">Instagram-Handle (ohne @)</label><input type="text" id="c_instagram"></div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="bar">
+  <button class="btn btn-outline" onclick="document.getElementById('fileLoad').click()">Datei laden</button>
+  <button class="btn btn-solid" onclick="downloadContent()">Datei herunterladen</button>
+</footer>
+
+<script>
+  const DEFAULT_CONTENT = {
+    hero:{ eyebrow:"Mobile Cocktailbar · Tirol", tagline:"Deine Bar. Dein Fest. Unser Wagen.", lead:"Frisch gemixte Cocktails direkt aus dem Anhänger — bei dir vor Ort, saisonal und mit Zutaten aus dem eigenen Garten. Für Hochzeiten, runde Geburtstage, Firmenfeiern und Sommerfeste in ganz Tirol." },
+    event:{ badge:"Live seit", title:"Mozi's ist gestartet!", date:"7. August 2026", location:"Fritzens, Tirol", instagram:"mozis.bar" },
+    about:{ heading:"Ich bin Moritz —", headingEm:"und das ist Mozi's", text:"Seit dem 7. August 2026 bin ich mit meiner eigenen mobilen Bar unterwegs. Bei Mozi's versuche ich, so viel wie möglich selbst zu machen — am liebsten frisch, saisonal und mit Zutaten aus dem eigenen Garten. Ich freue mich auf viele Feste, neue Bekanntschaften, lange Abende und alles, was in den nächsten Monaten noch auf mich zukommt. Vielleicht steht Mozi's ja auch irgendwann auf eurem Fest — ich bin gespannt, wohin die Reise geht!",
+      stats:[{num:"100%",label:"frisch gemixt"},{num:"1",label:"Bar, ganz Tirol"},{num:"∞",label:"Rezepte im Gepäck"}] },
+    menu:[
+      {name:"Zi's Garten-Mule",desc:"Wodka, Ingwer, Limette, Minze aus dem eigenen Beet",price:"€ 9"},
+      {name:"Rosmarin Sour",desc:"Gin, Zitrone, Rosmarinsirup, Eiweißschaum",price:"€ 10"},
+      {name:"Fritzens Spritz",desc:"Aperitif, Prosecco, Soda, Orangenzeste",price:"€ 8"},
+      {name:"Basilikum Smash",desc:"Rum, Limette, frisches Basilikum, Rohrzucker",price:"€ 9"},
+      {name:"Alkoholfrei: Kräuter-Lemonade",desc:"Zitrone, Minze, Holunderblüte, Soda",price:"€ 6"}
+    ],
+    packages:[
+      {tag:"Klein & fein",name:"Beet",price:"ab € 450",note:"bis 40 Gäste",featured:false,features:["2 Cocktails + 1 alkoholfrei zur Wahl","Auf- und Abbau inklusive","Eis & Deko im Bar-Stil"]},
+      {tag:"Beliebt",name:"Garten",price:"ab € 780",note:"bis 80 Gäste",featured:true,features:["4 Cocktails + 2 alkoholfrei zur Wahl","Signature Drink mit eurem Namen","Kräuter-Deko passend zum Fest","Zusätzliche Servicekraft"]},
+      {tag:"Große Feier",name:"Ernte",price:"ab € 1.250",note:"bis 150 Gäste",featured:false,features:["Volle Karte + Saison-Specials","Zwei Servicekräfte an der Bar","Individuelle Menükarten zum Mitnehmen"]}
+    ],
+    faq:[
+      {q:"Wie weit fahrt ihr für ein Event?",a:"Standardmäßig ganz Tirol. Für Events außerhalb kommt ein kleiner Anfahrtsaufschlag dazu — einfach bei der Anfrage den Ort angeben."},
+      {q:"Braucht ihr Strom- und Wasseranschluss vor Ort?",a:"Ein normaler Stromanschluss (230V) reicht. Wasser bringen wir im eigenen Tank mit — ein Anschluss vor Ort ist ein Plus, aber kein Muss."},
+      {q:"Könnt ihr auch bei Regen arbeiten?",a:"Ja, der Anhänger hat ein festes Dach und ein ausklappbares Vordach. Für die Gäste empfehlen wir zusätzlich einen überdachten Bereich."},
+      {q:"Wie läuft die Bezahlung ab?",a:"Nach Angebot und Terminbestätigung stellen wir eine Rechnung mit Anzahlung; der Rest ist nach dem Event fällig."}
+    ],
+    testimonials:[
+      {text:"Die Bar war der Gesprächsstoff unserer Hochzeit. Unkompliziert in der Planung und die Drinks waren perfekt abgestimmt.",who:"Julia & Thomas, Hochzeit in Fritzens",stars:5},
+      {text:"Pünktlich, freundlich, und der Rosmarin Sour ist bis heute Gesprächsthema im Büro. Kommt bei der nächsten Feier wieder.",who:"Markus, Firmenfeier Innsbruck",stars:5},
+      {text:"Auch die alkoholfreien Drinks waren richtig gut gemacht — nicht nur eine Notlösung. Genau das, was wir für unser Fest gesucht haben.",who:"Sabine, 50er-Geburtstag",stars:5}
+    ],
+    gallery:[
+      {src:"images/bar-action-1.jpeg", alt:"Cocktail wird gemixt", caption:"Los geht's"},
+      {src:"images/bar-action-2.jpeg", alt:"Aperol wird eingeschenkt", caption:"Cheers!"},
+      {src:"images/bartender-smile.jpeg", alt:"Bartender an der Bar", caption:"Mozi's Team"}
+    ],
+    images:{ hero:"images/bartender-smile.jpeg", about:"images/bar-action-1.jpeg", logo:"images/logo.jpeg" },
+    sections:{ ueberUns:true, angebot:true, ablauf:true, getraenke:true, galerie:true, testimonials:true, pakete:true, faq:true },
+    contact:{ address:"Fritzens, Tirol", email:"moritz.eggerriedmueller@gmail.com", phone:"+43 680 204 87 90", instagram:"mozis.bar" }
+  };
+
+  function setStatus(msg){ document.getElementById('status').textContent = msg; setTimeout(()=>{ if(document.getElementById('status').textContent===msg) document.getElementById('status').textContent=''; }, 3500); }
+
+  // ---------- repeatable row builders ----------
+  function menuRowHtml(m={}){
+    return `<div class="card-item">
+      <button class="remove" onclick="this.closest('.card-item').remove()">entfernen</button>
+      <div class="row2">
+        <div><label>Name</label><input type="text" class="m_name" value="${escAttr(m.name)}"></div>
+        <div><label>Preis</label><input type="text" class="m_price" value="${escAttr(m.price)}"></div>
+      </div>
+      <label>Beschreibung / Zutaten</label>
+      <input type="text" class="m_desc" value="${escAttr(m.desc)}">
+    </div>`;
+  }
+  function addMenuRow(m){ document.getElementById('menuList').insertAdjacentHTML('beforeend', menuRowHtml(m||{})); }
+
+  function pkgRowHtml(p={}){
+    const feats = (p.features||[]).join('\n');
+    return `<div class="card-item">
+      <button class="remove" onclick="this.closest('.card-item').remove()">entfernen</button>
+      <div class="row3">
+        <div><label>Label (z.B. "Beliebt")</label><input type="text" class="p_tag" value="${escAttr(p.tag)}"></div>
+        <div><label>Name</label><input type="text" class="p_name" value="${escAttr(p.name)}"></div>
+        <div><label>Preis</label><input type="text" class="p_price" value="${escAttr(p.price)}"></div>
+      </div>
+      <label>Zusatz (z.B. "bis 80 Gäste")</label>
+      <input type="text" class="p_note" value="${escAttr(p.note)}">
+      <label>Leistungen (eine Zeile pro Punkt)</label>
+      <textarea class="p_feat" style="min-height:100px;">${escHtml(feats)}</textarea>
+      <div class="checkbox-row">
+        <input type="checkbox" class="p_featured" ${p.featured?'checked':''}>
+        <label style="margin:0;">Hervorgehoben darstellen</label>
+      </div>
+    </div>`;
+  }
+  function addPkgRow(p){ document.getElementById('pkgList').insertAdjacentHTML('beforeend', pkgRowHtml(p||{})); }
+
+  function faqRowHtml(f={}){
+    return `<div class="card-item">
+      <button class="remove" onclick="this.closest('.card-item').remove()">entfernen</button>
+      <label>Frage</label>
+      <input type="text" class="f_q" value="${escAttr(f.q)}">
+      <label>Antwort</label>
+      <textarea class="f_a">${escHtml(f.a)}</textarea>
+    </div>`;
+  }
+  function addFaqRow(f){ document.getElementById('faqList').insertAdjacentHTML('beforeend', faqRowHtml(f||{})); }
+
+  function testiRowHtml(t={}){
+    return `<div class="card-item">
+      <button class="remove" onclick="this.closest('.card-item').remove()">entfernen</button>
+      <label>Zitat</label>
+      <textarea class="t_text">${escHtml(t.text)}</textarea>
+      <div class="row2">
+        <div><label>Von (Name, Anlass)</label><input type="text" class="t_who" value="${escAttr(t.who)}"></div>
+        <div><label>Sterne (1-5)</label><input type="text" class="t_stars stars-input" value="${t.stars!==undefined?t.stars:5}"></div>
+      </div>
+    </div>`;
+  }
+  function addTestiRow(t){ document.getElementById('testiList').insertAdjacentHTML('beforeend', testiRowHtml(t||{})); }
+
+  function galleryRowHtml(g={}){
+    return `<div class="card-item">
+      <button class="remove" onclick="this.closest('.card-item').remove()">entfernen</button>
+      <label>Dateiname im images-Ordner (z.B. images/mein-foto.jpeg)</label>
+      <input type="text" class="g_src" value="${escAttr(g.src)}" placeholder="images/dateiname.jpeg">
+      <div class="row2">
+        <div><label>Alt-Text (kurze Beschreibung fürs Foto)</label><input type="text" class="g_alt" value="${escAttr(g.alt)}"></div>
+        <div><label>Bildunterschrift (handschriftlich auf dem Polaroid)</label><input type="text" class="g_caption" value="${escAttr(g.caption)}"></div>
+      </div>
+    </div>`;
+  }
+  function addGalleryRow(g){ document.getElementById('galleryList').insertAdjacentHTML('beforeend', galleryRowHtml(g||{})); }
+
+  function escAttr(s){ return (s===undefined||s===null?'':String(s)).replace(/&/g,'&amp;').replace(/"/g,'&quot;'); }
+  function escHtml(s){ return (s===undefined||s===null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+  // ---------- populate form from a data object ----------
+  function populateForm(data){
+    document.getElementById('h_eyebrow').value = data.hero?.eyebrow || '';
+    document.getElementById('h_tagline').value = data.hero?.tagline || '';
+    document.getElementById('h_lead').value = data.hero?.lead || '';
+
+    document.getElementById('img_hero').value = data.images?.hero || '';
+    document.getElementById('img_about').value = data.images?.about || '';
+    document.getElementById('img_logo').value = data.images?.logo || '';
+
+    document.getElementById('e_badge').value = data.event?.badge || '';
+    document.getElementById('e_title').value = data.event?.title || '';
+    document.getElementById('e_date').value = data.event?.date || '';
+    document.getElementById('e_location').value = data.event?.location || '';
+    document.getElementById('e_instagram').value = data.event?.instagram || '';
+
+    document.getElementById('a_heading').value = data.about?.heading || '';
+    document.getElementById('a_headingEm').value = data.about?.headingEm || '';
+    document.getElementById('a_text').value = data.about?.text || '';
+    const stats = data.about?.stats || [];
+    ['s0','s1','s2'].forEach((id,i)=>{
+      document.getElementById(id+'_num').value = stats[i]?.num || '';
+      document.getElementById(id+'_lab').value = stats[i]?.label || '';
+    });
+
+    document.getElementById('menuList').innerHTML = '';
+    (data.menu||[]).forEach(m=>addMenuRow(m));
+
+    document.getElementById('pkgList').innerHTML = '';
+    (data.packages||[]).forEach(p=>addPkgRow(p));
+
+    document.getElementById('faqList').innerHTML = '';
+    (data.faq||[]).forEach(f=>addFaqRow(f));
+
+    document.getElementById('testiList').innerHTML = '';
+    (data.testimonials||[]).forEach(t=>addTestiRow(t));
+
+    document.getElementById('galleryList').innerHTML = '';
+    (data.gallery||[]).forEach(g=>addGalleryRow(g));
+
+    const sec = data.sections || {};
+    ['ueberUns','angebot','ablauf','getraenke','galerie','testimonials','pakete','faq'].forEach(key=>{
+      const el = document.getElementById('vis_'+key);
+      if(el) el.checked = sec[key] !== false;
+    });
+
+    document.getElementById('c_address').value = data.contact?.address || '';
+    document.getElementById('c_email').value = data.contact?.email || '';
+    document.getElementById('c_phone').value = data.contact?.phone || '';
+    document.getElementById('c_instagram').value = data.contact?.instagram || '';
+  }
+
+  // ---------- gather form back into a data object ----------
+  function gatherForm(){
+    const data = {
+      hero:{
+        eyebrow: document.getElementById('h_eyebrow').value,
+        tagline: document.getElementById('h_tagline').value,
+        lead: document.getElementById('h_lead').value
+      },
+      event:{
+        badge: document.getElementById('e_badge').value,
+        title: document.getElementById('e_title').value,
+        date: document.getElementById('e_date').value,
+        location: document.getElementById('e_location').value,
+        instagram: document.getElementById('e_instagram').value
+      },
+      about:{
+        heading: document.getElementById('a_heading').value,
+        headingEm: document.getElementById('a_headingEm').value,
+        text: document.getElementById('a_text').value,
+        stats: ['s0','s1','s2'].map(id=>({ num:document.getElementById(id+'_num').value, label:document.getElementById(id+'_lab').value }))
+      },
+      menu: Array.from(document.querySelectorAll('#menuList .card-item')).map(row=>({
+        name: row.querySelector('.m_name').value,
+        desc: row.querySelector('.m_desc').value,
+        price: row.querySelector('.m_price').value
+      })),
+      packages: Array.from(document.querySelectorAll('#pkgList .card-item')).map(row=>({
+        tag: row.querySelector('.p_tag').value,
+        name: row.querySelector('.p_name').value,
+        price: row.querySelector('.p_price').value,
+        note: row.querySelector('.p_note').value,
+        featured: row.querySelector('.p_featured').checked,
+        features: row.querySelector('.p_feat').value.split('\n').map(s=>s.trim()).filter(Boolean)
+      })),
+      faq: Array.from(document.querySelectorAll('#faqList .card-item')).map(row=>({
+        q: row.querySelector('.f_q').value,
+        a: row.querySelector('.f_a').value
+      })),
+      testimonials: Array.from(document.querySelectorAll('#testiList .card-item')).map(row=>({
+        text: row.querySelector('.t_text').value,
+        who: row.querySelector('.t_who').value,
+        stars: parseInt(row.querySelector('.t_stars').value, 10) || 5
+      })),
+      gallery: Array.from(document.querySelectorAll('#galleryList .card-item')).map(row=>({
+        src: row.querySelector('.g_src').value,
+        alt: row.querySelector('.g_alt').value,
+        caption: row.querySelector('.g_caption').value
+      })),
+      images:{
+        hero: document.getElementById('img_hero').value,
+        about: document.getElementById('img_about').value,
+        logo: document.getElementById('img_logo').value
+      },
+      sections: Object.fromEntries(
+        ['ueberUns','angebot','ablauf','getraenke','galerie','testimonials','pakete','faq'].map(key=>[key, document.getElementById('vis_'+key).checked])
+      ),
+      contact:{
+        address: document.getElementById('c_address').value,
+        email: document.getElementById('c_email').value,
+        phone: document.getElementById('c_phone').value,
+        instagram: document.getElementById('c_instagram').value
+      }
+    };
+    return data;
+  }
+
+  function downloadContent(){
+    const data = gatherForm();
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'content.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setStatus('content.json heruntergeladen');
+  }
+
+  document.getElementById('fileLoad').addEventListener('change', (ev)=>{
+    const file = ev.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = ()=>{
+      try{
+        const data = JSON.parse(reader.result);
+        populateForm(data);
+        setStatus('Datei geladen: ' + file.name);
+      }catch(err){
+        setStatus('Konnte Datei nicht lesen — ist es eine gültige content.json?');
+      }
+    };
+    reader.readAsText(file);
+  });
+
+  // on load: try to fetch the live content.json (works once hosted); otherwise use defaults
+  fetch('content.json', {cache:'no-store'})
+    .then(r=>{ if(!r.ok) throw new Error('missing'); return r.json(); })
+    .then(data=>{ populateForm(data); setStatus('Aktuelle Inhalte geladen'); })
+    .catch(()=>{ populateForm(DEFAULT_CONTENT); });
+</script>
+
+</body>
+</html>
